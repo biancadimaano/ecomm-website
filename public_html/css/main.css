@@ -12,13 +12,14 @@
 
 /* HEADER
     ===================================================== */
-nav{
+#nav-bar{
     background-color:#153F56;
     padding: 0.5rem 0 0.5rem 0;
 }
 
 header section{
     margin:5rem 1rem 0 1rem;
+    text-align:center;
 }
 
 header h1{
@@ -32,10 +33,6 @@ header h1{
 header p{
     font-size:1rem;
     margin-bottom:3rem;
-}
-
-header h1, header p{
-    text-align:center;
 }
 
 header .button.white{
