@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>E-Comm</title>
+</head>
+<body>
+    <nav>
+        <!-- Navigation Bar -->
+    </nav>
+    <header>
+        <h4>E-Comm Emergency Reports</h4>
+        <h1>Emergency Report Form</h1>
+        <h4>Thank you for your emergency report. Please fill out the form below.</h4>
+    </header>
+    <main>
+        <form id="report-form">
+            <h2>Witness Information</h2>
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name">
+
+            <label for="first-name">Last Name</label>
+            <input type="text" id="last-name">
+
+            <label for="phone-number">Phone Number</label>
+            <input type="text" id="phone-number" placeholder="###-###-####">
+
+            <h2>Emergency Details</h2>
+            <label for="nature-emergency">Nature of the Emergency</label>
+            <input type="text" id="nature-emergency">
+
+            <label for="location">Location</label>
+            <input type="text" id="location">
+            <input type="text" id="coordinates" placeholder="Input Coordinates">
+
+            <label for="image-file">Image of the Emergency</label>
+            <input type="file" id="image-file">
+            OR
+            <input type="text" id="image-url" placeholder="Paste Image URL">
+
+            <label></label>
+            <textarea id="comments" placeholder='“Suspect is wearing cargo shorts with green t-shirt”'>
+            </textarea>
+
+            <input type="submit" id="submit" value="Submit Report">
+        </form>
+    </main>
+    <p id="test">
+        
+    </p>
+    <script src="reportForm.js"></script>
+</body>
+</html>
