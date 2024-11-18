@@ -16,6 +16,11 @@ body{
 
 /* HEADER
     ===================================================== */
+header{
+    background-color:rgb(0,0,0,0.23);
+    padding-bottom:10rem;
+}
+
 #nav-bar{
     background-color:#153F56;
     padding: 0.5rem 0 0.5rem 0;
@@ -23,14 +28,16 @@ body{
 
 #header-city-img{
     position:absolute;
-    top:-675px;
     margin:0;
     padding:0;
     z-index:-1;
+    width:100vw;
+    height:50vh;
+    object-fit:cover;
 }
 
 header section{
-    margin:5rem 1rem 0 1rem;
+    margin:7rem 1rem 0 1rem;
     text-align:center;
 }
 
@@ -40,11 +47,13 @@ header h1{
     text-align:center;
     font-size:2.25rem;
     margin-bottom:2rem;
+    color:white;
 }
 
 header p{
     font-size:1rem;
     margin-bottom:3rem;
+    color:white; 
 }
 
 header .button.white{
@@ -75,4 +84,12 @@ header .button.white:hover,header .button.white:focus{
 
 header .button.blue:hover,header .button.blue:focus{
     background-color:#0D2634;
+}
+
+/* MAIN
+    ===================================================== */
+
+main{
+    background-color:white;
+    margin-top:-1.25rem;
 }
