@@ -4,6 +4,13 @@
     padding: 0;
 }
 
+#title {
+    color: #ffffff;
+    text-align: left;
+    display: flex;
+    
+}
+
 nav {
     display: flex;
     justify-content: flex-end;
