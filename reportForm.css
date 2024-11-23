@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#title {
+    color: #ffffff;
+    margin: 0;
+    margin-top: 10px;
+    display: flex;
+    
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #163F56;
+}
+
+nav ul {
+    font-size: small;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    text-align: right;
+    margin: 0px;
+}
+
+nav ul li {
+    list-style-type: none;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    color: #9ebed1;
+}
+
+header {
+    background-color: #ffffff;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    padding: 50px;
+    margin-bottom: 50px;
+    padding-left: 200px;
+}
+
+header h1 {
+    font-weight: bolder;
+}
+
+header h3 {
+    font-weight: lighter;
+}
+
+header h4 {
+    color: #B3B3B3;
+}
+
+body {
+    background-color: #E7EBED;
+    font-family: 'Lato', sans-serif;
+}
+
+main {
+    margin-right: 200px;
+    margin-left: 200px;
+}
+
+main h2 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.input-label1 {
+    margin-right: 105px;
+    font-size: small;
+}
+
+#first-name, #last-name, #phone-number{
+    margin-right: 20px;
+    height: 20px;
+}
+
+.input-label2 {
+    margin-right: 85px;
+    font-size: small;
+}
+
+#nature-emergency {
+    margin-right: 20px;
+    height: 20px;
+    width: 200px;
+}
+
+#location {
+    height: 20px;
+    width: 250px;
+    margin-bottom: 50px
+}
+#coordinates {
+    height: 20px;
+}
+
+#image-file {
+    margin: 5px;
+}
+
+#image-url {
+    margin: 60px;
+}
+
+#submit {
+    margin-top: 30px;
+    padding: 5px;
+    background-color: #163F56;
+    color: #ffffff;
+}
+
+#comments {
+    padding-top: 50px;
+    padding-right:150px;
+}
+
+#test {
+    margin: 50px;
+}
