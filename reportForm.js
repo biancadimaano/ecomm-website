@@ -55,6 +55,7 @@ document.getElementById("submit").addEventListener('click', function() {
 
     // Prevent form submission if invalid
     if (!isValid) {
+        alert('form unable to submit');
         return;
     }
 
