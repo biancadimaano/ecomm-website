@@ -6,14 +6,16 @@
 
 #title {
     color: #ffffff;
-    text-align: left;
+    margin: 0;
+    margin-top: 10px;
     display: flex;
     
 }
 
 nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding: 0 20px;
     background-color: #163F56;
 }
 
@@ -107,4 +109,26 @@ main h2 {
 }
 #coordinates {
     height: 20px;
+}
+
+#image-file {
+    margin: 5px;
+}
+
+#image-url {
+    margin: 60px;
+}
+
+#submit {
+    margin-top: 30px;
+    padding: 5px;
+}
+
+#comments {
+    padding-top: 50px;
+    padding-right:150px;
+}
+
+#test {
+    margin: 50px;
 }
