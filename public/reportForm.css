@@ -7,7 +7,7 @@
 #title {
     color: #ffffff;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     
 }
@@ -133,4 +133,9 @@ main h2 {
 
 #test {
     margin: 50px;
+}
+
+#errors {
+    color: #ee6d6d;
+    line-height: 4vh;
 }

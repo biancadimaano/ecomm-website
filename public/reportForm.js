@@ -1,8 +1,10 @@
 // submit form
-document.getElementById("submit").addEventListener('click', function() {
+document.getElementById("report-form").addEventListener('submit', function() {
+    // prevet form submission
+    event.preventDefault();
+    
     // clear previous errors
     const errorDiv = document.getElementById('errors');
-    errorDiv.innerHTML = '';
 
     // get elements from the form
     const firstName = document.getElementById('first-name').value.trim();
@@ -19,38 +21,54 @@ document.getElementById("submit").addEventListener('click', function() {
 
     // validation checks
     if(!firstName || !/^[A-Za-z]+$/.test(firstName)) {
+        console.log('First name is invalid');
         isValid = false;
-        errorDiv.innerHTML += '<p>First name is required and must contain only lettlers.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'First name is required and must contain only letters.';
+        errorDiv.appendChild(errorMessage);
     }
     if(!lastName || !/^[A-Za-z]+$/.test(lastName)) {
         isValid = false;
-        errorDiv.innerHTML += '<p>Last name is required and must contain only lettlers.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Last name is required and must contain only letters.';
+        errorDiv.appendChild(errorMessage);
     }
-    if(!phoneNumber || !/^[d{10}$]+$/.test(phoneNumber)) {
+    if(!phoneNumber || !/^[d{10}$]$/.test(phoneNumber)) {
         isValid = false;
-        errorDiv.innerHTML += '<p>Phone number must be a 10-digit number.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Phone number must be a 10-digit number.';
+        errorDiv.appendChild(errorMessage);
     }
     if(!natureEmergency) {
         isValid = false;
-        errorDiv.innerHTML += '<p>Nature of the emergency is required.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Nature of the emergency is required.';
+        errorDiv.appendChild(errorMessage);
     }
     if(!location) {
         isValid = false;
-        errorDiv.innerHTML += '<p>Location is required.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Location is required.';
+        errorDiv.appendChild(errorMessage);
     }
     if (coordinates && !/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|(\d{1,2}))(\.\d+)?)$/.test(coordinates)) {
         isValid = false;
-        errorDiv.innerHTML += '<p>Coordinates must be in a valid latitude/longitude format.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Coordinates must be in a valid latitude/longitude format.';
+        errorDiv.appendChild(errorMessage);
     }
 
     if (url && !/^https?:\/\/[^\s$.?#].[^\s]*$/.test(url)) {
-        isValid = false;
-        errorDiv.innerHTML += '<p>Image URL must be a valid URL.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Image URL must be a valid URL.';
+        errorDiv.appendChild(errorMessage);
     }
 
     if (comments.length > 500) {
         isValid = false;
-        errorDiv.innerHTML += '<p>Comments cannot exceed 500 characters.</p>';
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Comments cannot exceed 500 characters.';
+        errorDiv.appendChild(errorMessage);
     }
 
     // Prevent form submission if invalid
@@ -71,8 +89,10 @@ document.getElementById("submit").addEventListener('click', function() {
         comments: comments
     }
 
-    localStorage.setItem('data', JSON.stringify(data));
-    alert('Form submitted successfully');
+    if (isValid) {
+        localStorage.setItem('data', JSON.stringify(data));
+        alert('Form submitted successfully');
+    }
 
 });
 
