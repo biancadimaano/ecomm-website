@@ -122,6 +122,8 @@ main h2 {
 #submit {
     margin-top: 30px;
     padding: 5px;
+    background-color: #163F56;
+    color: #ffffff;
 }
 
 #comments {
