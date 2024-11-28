@@ -1,3 +1,6 @@
+/* main.css
+    Main page CSS here */
+
 /* Colours:
     Darker blue: #153F56
     Lighter blue: #3F677D
@@ -18,6 +21,7 @@ body{
 /* HEADER
     ===================================================== */
 header{
+    background:rgba(0,0,0,0.3);
     padding-bottom:8rem;
 }
 
@@ -102,6 +106,7 @@ main{
 main section h2{
     font-size:2.5rem;
     padding: 2rem 2.25rem;
+    margin-top:0;
 }
 
 main section .results{
