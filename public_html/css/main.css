@@ -122,8 +122,18 @@ main section .results{
 /* Info card
     ==================== */
 
+main{
+    grid-template-columns: 30% 70%; 
+}
+
 main .reports{
     background-color:#E7EBED;
     padding:0.25rem 2.25rem;
     margin-top: 1.5rem;
+    overflow-y: scroll;
+    /* max-height: rem; */
+}
+
+main .left{
+    border-right: 0.15rem solid #CFDBE4;
 }

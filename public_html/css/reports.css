@@ -10,41 +10,46 @@
     Very light gray: #E7EBED
 */
 
-main{
-    grid-template-columns: 1fr 1fr; 
-}
-
 .reports div{
-    /* Grid */
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    row-gap:0.15rem;
 
-    /* Background */
     background: white;
+    border-radius:0.45rem;
 
-    padding:1rem;
+    margin-top:1.5rem;
+    padding:1.25rem;
 }
 
 .reports div h3{
-    font-size:1.45rem;
+    font-size:1.4rem;
     order:0;
 }
 
 .reports .location{
     order:2;
+    font-size:1.4rem;
 }
 
 .reports .time{
     order:1;
+    font-size:1.1rem;
+    margin-top:0.35rem;
 }
 
 .reports .date{
     order:3;
+    font-size:1.1rem;
+    margin-top:0.12rem;
 }
 
 .reports em{
     grid-column: span 2;
     order:4;
+    font-style:normal;
+    font-size:1.4rem;
+    font-weight:600;
 }
 
 .time, .date, .reports em{
