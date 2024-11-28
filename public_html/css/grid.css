@@ -9,6 +9,37 @@ header .button-header{
     gap:1rem;
 }
 
+@media (width <= 31.25rem){
+    main .reports{
+        overflow-y: visible;
+    }
+
+    .time{
+        margin:0 !important;
+        padding-top:1rem;
+    }
+
+    .date{
+        padding-bottom:1rem;
+    }
+}
+
+@media (width > 31.25rem){
+    .reports div{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    
+    .reports em{
+        grid-column: span 2;
+    }
+
+    .time, .date, .reports em{
+        text-align:right;
+    }
+}
+
 @media (width > 43.4375rem){
     header .button-header, header .button{
         display:inline-block;
@@ -41,3 +72,13 @@ header .button-header{
         font-size:3rem;
     }
 }   
+
+@media (width > 93.75rem){
+    main{
+        grid-template-columns: 30% 70%; 
+    }
+
+    main .left{
+        border-right: 0.15rem solid #CFDBE4;
+    }
+}

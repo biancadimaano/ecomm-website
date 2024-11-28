@@ -124,7 +124,7 @@ main section .results{
     ==================== */
 
 main{
-    grid-template-columns: 30% 70%; 
+    grid-template-columns: 1fr; 
 }
 
 main .reports{
@@ -133,8 +133,4 @@ main .reports{
     margin-top: 1.5rem;
     overflow-y: scroll;
     /* max-height: rem; */
-}
-
-main .left{
-    border-right: 0.15rem solid #CFDBE4;
 }

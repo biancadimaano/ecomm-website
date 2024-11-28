@@ -11,15 +11,15 @@
 */
 
 .reports div{
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    row-gap:0.15rem;
+    display:inline-block;
+    width:100%;
 
     background: white;
     border-radius:0.45rem;
 
     margin-top:1.5rem;
     padding:1.25rem;
+    padding-top:1.15rem;
 }
 
 .reports div h3{
@@ -52,15 +52,6 @@
     font-weight:600;
 }
 
-.time, .date, .reports em{
-    text-align:right;
-}
-
 .reports div h3, .time, .date, .location, .reports em{
     margin:0;
-}
-
-
-@media (width < 1500){
-    
 }
