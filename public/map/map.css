@@ -1,0 +1,351 @@
+/* grid.css
+    Home page grid and media queries here */
+
+.grid{
+    display:grid;
+}
+
+header .button-header{
+    gap:1rem;
+}
+
+@media (width <= 25.625rem){
+    #header-city-img{
+        top:0rem;
+    }
+}
+
+@media (width <= 31.25rem){
+    main .reports{
+        overflow-y: visible;
+    }
+
+    .time{
+        margin:0 !important;
+        padding-top:1rem;
+    }
+
+    .date{
+        padding-bottom:1rem;
+    }
+}
+
+@media (width > 31.25rem){
+    .reports div{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    
+    .reports em{
+        grid-column: span 2;
+    }
+
+    .time, .date, .reports em{
+        text-align:right;
+    }
+}
+
+@media (width > 43.4375rem){
+    header .button-header, header .button{
+        display:inline-block;
+    }
+    
+    header .button{
+        width:16rem;
+        padding:1rem 1.25rem;
+        margin-bottom:3.85rem;
+    }
+
+    header .button.white{
+        margin-right:1rem;
+    }
+
+}
+
+@media (width > 45.5625rem){
+    header section{
+        margin:10rem 1rem 0 1rem;
+    }
+
+    header p{
+        max-width:60rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    header h1{
+        font-size:3rem;
+    }
+}   
+
+@media (width > 93.75rem){
+    main{
+        grid-template-columns: 30% 70%; 
+    }
+
+    main .left{
+        border-right: 0.15rem solid #CFDBE4;
+    }
+}
+
+/* main.css
+    Main page CSS here */
+
+/* Colours:
+    Darker blue: #153F56
+    Lighter blue: #3F677D
+    Yellow: #FFCC00
+    Dark gray: #4D4D4D
+    Light gray: #B3B3B3
+    Very light gray: #E7EBED
+*/
+
+*{
+    font-family:'Fira Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+/* HEADER
+    ===================================================== */
+header{
+    background:rgba(0,0,0,0.3);
+}
+
+#nav-bar{
+    background-color:#153F56;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+#header-city-img{
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0;
+    padding:0;
+    z-index:-1;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+header section{
+    margin:0 !important;
+    padding:7rem 1rem 7rem 1rem;
+    text-align:center;
+}
+
+header h1{
+    font-family:'Lato', sans-serif;
+    font-weight:900; /* 900 = black */
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:2.5rem;
+    color:white;
+}
+
+header p{
+    font-size:1.25rem;
+    margin-bottom:8rem;
+    color:white; 
+}
+
+header .button.white{
+    color:#153F56;
+    background-color:white;
+}
+
+header .button.blue{
+    color:white;
+    background-color:#153F56;
+}
+
+header .button{
+    box-sizing: content-box;
+    text-decoration:none;
+    border-radius:0.5rem;
+    padding:0.5rem 1.25rem;
+    font-family:'Lato',sans-serif;
+    font-weight:700;
+    padding: 0.75rem 0 0.75rem 0;
+    margin:0 1rem 0rem 1rem;
+    font-size:1.5rem;
+}
+
+header .button:hover, header .button:focus{
+    text-decoration:underline;
+}
+
+header .button.white:hover,header .button.white:focus{
+    background-color:#DDDDDD;
+}
+
+header .button.blue:hover,header .button.blue:focus{
+    background-color:#0D2634;
+}
+
+/* MAIN
+    ===================================================== */
+
+main{
+    background-color:white;
+}
+
+/* Current reports
+    ==================== */
+    
+main section h2{
+    font-size:2.5rem;
+    padding: 2rem 2.25rem;
+    margin-top:0;
+}
+
+main section .results{
+    color:#4D4D4D;
+    font-size:1.25rem;
+    font-weight:600;
+    margin-top:-2.75rem;
+    padding-left:2.25rem;
+}
+
+/* Info card
+    ==================== */
+
+main{
+    grid-template-columns: 1fr; 
+}
+
+main .reports{
+    background-color:#E7EBED;
+    padding:0.25rem 2.25rem;
+    margin-top: 1.5rem;
+    overflow-y: scroll;
+    /* max-height: rem; */
+}
+
+
+/* reports.css
+    CSS for emergency report cards here */
+
+/* Colours:
+    Darker blue: #153F56
+    Lighter blue: #3F677D
+    Yellow: #FFCC00
+    Dark gray: #4D4D4D
+    Light gray: #B3B3B3
+    Very light gray: #E7EBED
+*/
+
+.reports div{
+    display:inline-block;
+    width:100%;
+
+    background: white;
+    border-radius:0.45rem;
+
+    margin-top:1.5rem;
+    padding:1.25rem;
+    padding-top:1.15rem;
+}
+
+.reports div h3{
+    font-size:1.4rem;
+    order:0;
+}
+
+.reports .location{
+    order:2;
+    font-size:1.4rem;
+}
+
+.reports .time{
+    order:1;
+    font-size:1.1rem;
+    margin-top:0.35rem;
+}
+
+.reports .date{
+    order:3;
+    font-size:1.1rem;
+    margin-top:0.12rem;
+}
+
+.reports em{
+    grid-column: span 2;
+    order:4;
+    font-style:normal;
+    font-size:1.4rem;
+    font-weight:600;
+}
+
+.reports div h3, .time, .date, .location, .reports em{
+    margin:0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 4fr; 
+    gap: 20px; 
+    padding: 20px;
+}
+
+.left {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.right {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#map-container {
+    width: 100%;
+    height: 735px; 
+    background-color: #eaeaea; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.reports .grid:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+#popup-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; 
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    display: none; 
+}
+
+#popup-container .close-btn {
+    cursor: pointer;
+    color: #888;
+    font-size: 16px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.reports {
+    max-height: 580px; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+    margin-top: 20px; 
+}

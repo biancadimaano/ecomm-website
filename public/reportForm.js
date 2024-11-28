@@ -1,10 +1,11 @@
 // submit form
-document.getElementById("report-form").addEventListener('submit', function() {
-    // prevet form submission
+document.getElementById("report-form").addEventListener('submit', function(event) {
+    // prevent form submission
     event.preventDefault();
     
     // clear previous errors
     const errorDiv = document.getElementById('errors');
+    
 
     // get elements from the form
     const firstName = document.getElementById('first-name').value.trim();
@@ -21,7 +22,6 @@ document.getElementById("report-form").addEventListener('submit', function() {
 
     // validation checks
     if(!firstName || !/^[A-Za-z]+$/.test(firstName)) {
-        console.log('First name is invalid');
         isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'First name is required and must contain only letters.';
@@ -33,7 +33,7 @@ document.getElementById("report-form").addEventListener('submit', function() {
         errorMessage.textContent = 'Last name is required and must contain only letters.';
         errorDiv.appendChild(errorMessage);
     }
-    if(!phoneNumber || !/^[d{10}$]$/.test(phoneNumber)) {
+    if (!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
         isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'Phone number must be a 10-digit number.';
@@ -59,6 +59,7 @@ document.getElementById("report-form").addEventListener('submit', function() {
     }
 
     if (url && !/^https?:\/\/[^\s$.?#].[^\s]*$/.test(url)) {
+        isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'Image URL must be a valid URL.';
         errorDiv.appendChild(errorMessage);
@@ -71,9 +72,9 @@ document.getElementById("report-form").addEventListener('submit', function() {
         errorDiv.appendChild(errorMessage);
     }
 
-    // Prevent form submission if invalid
+    // prevent form submission if invalid
     if (!isValid) {
-        alert('form unable to submit');
+        alert('Form unable to submit');
         return;
     }
 
@@ -86,25 +87,19 @@ document.getElementById("report-form").addEventListener('submit', function() {
         coordinates: coordinates,
         image: image,
         url: url,
-        comments: comments
-    }
+        comments: comments,
+        timeDate: new Date().toISOString(),  // timeDate field
+        status: 'OPEN'  // default status to OPEN
+    };
 
-    if (isValid) {
-        localStorage.setItem('data', JSON.stringify(data));
-        alert('Form submitted successfully');
-    }
+    // get existing reports from localStorage
+    let reports = JSON.parse(localStorage.getItem('emergencyReports')) || [];
 
-});
+    // add the new report to the array
+    reports.push(data);
 
-document.addEventListener('DOMContentLoaded', function() {
-    const savedData = localStorage.getItem('data');
+    // save the updated reports array back to localStorage
+    localStorage.setItem('emergencyReports', JSON.stringify(reports));
 
-    // testing the dom local storage output
-    if(savedData){
-        const data = JSON.parse(savedData);
-        console.log("Form data:", data);
-
-        document.getElementById('test').innerHTML = 
-    data.firstName + data.lastName + "Reported: " + data.natureEmergency;
-    }
+    alert('Form submitted successfully');
 });

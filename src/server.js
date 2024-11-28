@@ -6,6 +6,16 @@ const port = 3000;
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('/', (req, res) => {
+    res.redirect('/map');  // Redirect to the map page by default
+});
+
+
+// Serve the map page at /map
+app.get('/map', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/map/map.html'));
+});
+
 // Define a route
 app.get('/hash/md5/hex', (req, res) => {
     const value = req.query.value;
@@ -17,6 +27,8 @@ app.get('/hash/md5/hex', (req, res) => {
     const hash = crypto.createHash('md5').update(value).digest('hex');
     res.send({ value, hash });
 });
+
+
 
 // Start the server
 app.listen(port, () => {
