@@ -59,3 +59,8 @@
 .reports div h3, .time, .date, .location, .reports em{
     margin:0;
 }
+
+
+@media (width < 1500){
+    
+}
