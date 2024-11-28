@@ -33,6 +33,7 @@ header{
 
 #header-city-img{
     position:absolute;
+    top:-10rem;
     margin:0;
     padding:0;
     z-index:-1;
