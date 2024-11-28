@@ -12,6 +12,7 @@
 
 *{
     font-family:'Fira Sans', sans-serif;
+    box-sizing: border-box;
 }
 
 body{
@@ -71,6 +72,7 @@ header .button.blue{
 }
 
 header .button{
+    box-sizing: content-box;
     text-decoration:none;
     border-radius:0.5rem;
     padding:0.5rem 1.25rem;
