@@ -10,6 +10,20 @@
     Very light gray: #E7EBED
 */
 
-.reports div{
-    
+main{
+    grid-template-columns: 1fr 1fr; 
 }
+
+.reports div{
+    /* Grid */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    /* Background */
+    background: white;
+}
+
+.reports div h3{
+    font-size:1.45rem;
+}
+
