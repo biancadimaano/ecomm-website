@@ -21,9 +21,36 @@ main{
 
     /* Background */
     background: white;
+
+    padding:1rem;
 }
 
 .reports div h3{
     font-size:1.45rem;
+    order:0;
 }
 
+.reports .location{
+    order:2;
+}
+
+.reports .time{
+    order:1;
+}
+
+.reports .date{
+    order:3;
+}
+
+.reports em{
+    grid-column: span 2;
+    order:4;
+}
+
+.time, .date, .reports em{
+    text-align:right;
+}
+
+.reports div h3, .time, .date, .location, .reports em{
+    margin:0;
+}
