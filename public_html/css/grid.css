@@ -1,8 +1,11 @@
 /* grid.css
     Home page grid and media queries here */
 
-header .button-header{
+.grid{
     display:grid;
+}
+
+header .button-header{
     gap:1rem;
 }
 
