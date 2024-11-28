@@ -9,6 +9,12 @@ header .button-header{
     gap:1rem;
 }
 
+@media (width <= 25.625rem){
+    #header-city-img{
+        top:0rem;
+    }
+}
+
 @media (width <= 31.25rem){
     main .reports{
         overflow-y: visible;
