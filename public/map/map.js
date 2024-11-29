@@ -60,18 +60,18 @@ function displayReports(filteredReports = reports) {
 // popup container ref
 const popupContainer = document.getElementById('popup-container');
 
-// show popup with report info
 function showPopup(report) {
     popupContainer.innerHTML = `
         <button class="close-btn">X</button>
         <h3>${report.natureEmergency}</h3>
         <p><strong>Location:</strong> ${report.location}</p>
         <p><strong>Time:</strong> ${new Date(report.timeDate).toLocaleString()}</p>
-        <p><strong>Status:</strong> ${report.status}</p>
+        <button class="status-btn">Status: ${report.status} </button>
         <p><strong>Comments:</strong> ${report.comments}</p>
         <p><strong>Witness:</strong> ${report.firstName} ${report.lastName}</p>
         <p><strong>Phone:</strong> ${report.phoneNumber}</p>
-        <a href="${report.image}" target="_blank">View Image</a>
+        ${report.image ? `<img src="${report.image}" alt="Emergency Image" style="max-width: 100%; max-height: 200px;">` : '<p>No image provided.</p>'}
+
     `;
     popupContainer.style.display = 'block';
 
@@ -82,6 +82,8 @@ function showPopup(report) {
         resetMarkerHighlights();
     });
 }
+
+
 
 // highlight selected marker
 function highlightMarker(selectedMarker) {
