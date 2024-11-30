@@ -117,7 +117,8 @@ function showStatusPopup(report) {
         <button class="submit-status">Submit</button>
     `;
 
-    document.body.appendChild(popup);
+    const mainElement = document.querySelector('main');
+    mainElement.appendChild(popup);
 
     popup.querySelector('.submit-status').addEventListener('click', () => {
         popup.remove();
