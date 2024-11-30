@@ -323,8 +323,12 @@ main .reports{
     border-radius: 8px;
 }
 
+.reports .grid{
+    display:grid;
+}
+
 .reports .grid:hover {
-    background-color: lightblue;
+    border:0.15rem solid #96C7FF;
     cursor: pointer;
 }
 
