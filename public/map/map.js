@@ -81,8 +81,66 @@ function showPopup(report) {
         popupContainer.style.display = 'none';
         resetMarkerHighlights();
     });
+
+    // show status popup
+    const statusBtn = popupContainer.querySelector('.status-btn');
+    statusBtn.addEventListener('click', () => {
+        showStatusPopup(report);
+    });
 }
 
+// fcn to change the status
+function showStatusPopup(report) {
+    // make a new popup
+    const popup = document.createElement('div');
+    popup.classList.add('status-popup');
+    popup.style.position = 'absolute';
+    popup.style.top = '60%';
+    popup.style.left = '60%';
+    popup.style.backgroundColor = 'white';
+    popup.style.borderRadius = '20px';
+    popup.style.padding = '30px';
+    popup.style.zIndex = 1000;
+
+    popup.innerHTML = `
+        <h3>Change Report Status</h3>
+
+        <h4>Report</h4>
+        <p>
+            ${report.natureEmergency}, ${report.location}<br>
+            ${new Date(report.timeDate).toLocaleString()}
+        </p>
+
+        <h4>Change status to</h4>
+
+        <button class="update-status" data-status="OPEN">OPEN</button>
+        <button class="update-status" data-status="RESOLVED">RESOLVED</button>
+        
+        <h4>Enter authorization code to change report status</h4>
+        <input type="text" placeholder="Enter password..." size="50">
+
+        <br><br>
+
+        <button class="submit-status">Submit</button>
+    `;
+
+    document.body.appendChild(popup);
+
+    popup.querySelector('.submit-status').addEventListener('click', () => {
+        popup.remove();
+    });
+
+    // update status
+    popup.querySelectorAll('.update-status').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const newStatus = e.target.dataset.status;
+            report.status = newStatus;
+            popup.remove();
+            showPopup(report); 
+            localStorage.setItem('emergencyReports', JSON.stringify(reports));
+        });
+    });
+}
 
 
 // highlight selected marker
