@@ -1,0 +1,66 @@
+/* Colours:
+    Darker blue: #153F56
+    Lighter blue: #3F677D
+    Yellow: #FFCC00
+    Dark gray: #4D4D4D
+    Light gray: #B3B3B3
+*/
+
+*{
+    font-family:'Fira Sans', sans-serif;
+}
+
+/* HEADER
+    ===================================================== */
+#nav-bar{
+    background-color:#153F56;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+header section{
+    margin:5rem 1rem 0 1rem;
+    text-align:center;
+}
+
+header h1{
+    font-family:'Lato', sans-serif;
+    font-weight:900; /* 900 = black */
+    text-align:center;
+    font-size:2.25rem;
+    margin-bottom:2rem;
+}
+
+header p{
+    font-size:1rem;
+    margin-bottom:3rem;
+}
+
+header .button.white{
+    color:#153F56;
+    background-color:white;
+}
+
+header .button.blue{
+    color:white;
+    background-color:#153F56;
+}
+
+header .button{
+    text-decoration:none;
+    border-radius:0.5rem;
+    padding:0.5rem 1.25rem;
+    font-family:'Lato',sans-serif;
+    font-weight:700;
+}
+
+header .button:hover, header .button:focus{
+    text-decoration:underline;
+}
+
+header .button.white:hover,header .button.white:focus{
+    background-color:#DDDDDD;
+}
+
+header .button.blue:hover,header .button.blue:focus{
+    background-color:#0D2634;
+}

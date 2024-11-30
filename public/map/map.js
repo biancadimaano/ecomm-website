@@ -62,16 +62,14 @@ const popupContainer = document.getElementById('popup-container');
 
 function showPopup(report) {
     popupContainer.innerHTML = `
-        <button class="close-btn">X</button>
+        <button class="close-btn">✖</button>
         <h3>${report.natureEmergency}</h3>
-        <p><strong>Location:</strong> ${report.location}</p>
-        <p><strong>Time:</strong> ${new Date(report.timeDate).toLocaleString()}</p>
+        <p class="location"><strong></strong> ${report.location}</p>
+<p class="datetime"><strong></strong> ${new Date(report.timeDate).toLocaleDateString()}<br>${new Date(report.timeDate).toLocaleTimeString()}</p>
         <button class="status-btn">Status: ${report.status} </button>
-        <p><strong>Comments:</strong> ${report.comments}</p>
-        <p><strong>Witness:</strong> ${report.firstName} ${report.lastName}</p>
-        <p><strong>Phone:</strong> ${report.phoneNumber}</p>
-        ${report.image ? `<img src="${report.image}" alt="Emergency Image" style="max-width: 100%; max-height: 200px;">` : '<p>No image provided.</p>'}
-
+        ${report.image ? `<img src="${report.image}" alt="Emergency Image">` : '<p>No image provided.</p>'}
+        <p><strong>Reported by</strong><br> ${report.firstName} ${report.lastName} ${report.phoneNumber}
+        <p><strong>Comments</strong><br> ${report.comments}</p>
     `;
     popupContainer.style.display = 'block';
 
@@ -81,8 +79,60 @@ function showPopup(report) {
         popupContainer.style.display = 'none';
         resetMarkerHighlights();
     });
+
+    // show status popup
+    const statusBtn = popupContainer.querySelector('.status-btn');
+    statusBtn.addEventListener('click', () => {
+        showStatusPopup(report);
+    });
 }
 
+// fcn to change the status
+function showStatusPopup(report) {
+    // make a new popup
+    const popup = document.createElement('div');
+    popup.classList.add('status-popup');
+
+    popup.innerHTML = `
+        <h3>Change Report Status</h3>
+
+        <h4>Report</h4>
+        <p>
+            ${report.natureEmergency}, ${report.location}<br>
+            ${new Date(report.timeDate).toLocaleString()}
+        </p>
+
+        <h4>Change status to</h4>
+
+        <button class="update-status" data-status="OPEN">OPEN</button>
+        <button class="update-status" data-status="RESOLVED">RESOLVED</button>
+        
+        <h4>Enter authorization code to change report status:</h4>
+        <input type="text" placeholder="Enter password..." size="50">
+
+        <br><br>
+
+        <button class="submit-status">Submit</button>
+    `;
+
+    const mainElement = document.querySelector('main');
+    mainElement.appendChild(popup);
+
+    popup.querySelector('.submit-status').addEventListener('click', () => {
+        popup.remove();
+    });
+
+    // update status
+    popup.querySelectorAll('.update-status').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const newStatus = e.target.dataset.status;
+            report.status = newStatus;
+            popup.remove();
+            showPopup(report); 
+            localStorage.setItem('emergencyReports', JSON.stringify(reports));
+        });
+    });
+}
 
 
 // highlight selected marker
