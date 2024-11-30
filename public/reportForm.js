@@ -16,6 +16,58 @@ document.getElementById("report-form").addEventListener('submit', async function
 
     let isValid = true;
 
+    // Validation checks for text fields
+    if(!firstName || !/^[A-Za-z]+$/.test(firstName)) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'First name is required and must contain only letters.';
+        errorDiv.appendChild(errorMessage);
+    }
+    if(!lastName || !/^[A-Za-z]+$/.test(lastName)) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Last name is required and must contain only letters.';
+        errorDiv.appendChild(errorMessage);
+    }
+    if(!natureEmergency) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Nature of the emergency is required.';
+        errorDiv.appendChild(errorMessage);
+    }
+    if(!location) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Location is required.';
+        errorDiv.appendChild(errorMessage);
+    }
+    if (coordinates && !/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|(\d{1,2}))(\.\d+)?)$/.test(coordinates)) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Coordinates must be in a valid latitude/longitude format.';
+        errorDiv.appendChild(errorMessage);
+    }
+
+    if (!/^https?:\/\/[^\s$.?#].[^\s]*$/.test(imageUrl) && imageUrl) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Image URL must be a valid URL.';
+        errorDiv.appendChild(errorMessage);
+    }
+    if (comments.length > 500) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Comments cannot exceed 500 characters.';
+        errorDiv.appendChild(errorMessage);
+    }
+
+    // Ensure either image URL or image file is provided
+    if (!imageUrl && fileInput.files.length === 0) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'You must either upload an image or provide an image URL.';
+        errorDiv.appendChild(errorMessage);
+    }
 
     if (!isValid) {
         alert('Form unable to submit');
@@ -39,7 +91,6 @@ document.getElementById("report-form").addEventListener('submit', async function
         }
     }
 
-
     const data = {
         firstName,
         lastName,
@@ -52,7 +103,6 @@ document.getElementById("report-form").addEventListener('submit', async function
         timeDate: new Date().toISOString(),
         status: 'OPEN',
     };
-    
 
     const reports = JSON.parse(localStorage.getItem('emergencyReports')) || [];
     reports.push(data);

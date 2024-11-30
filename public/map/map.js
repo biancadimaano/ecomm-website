@@ -94,6 +94,7 @@ function showStatusPopup(report) {
     popup.classList.add('status-popup');
 
     popup.innerHTML = `
+        <button class="close-btn">✖</button>
         <h3>Change Report Status</h3>
 
         <h4>Report</h4>
@@ -117,6 +118,11 @@ function showStatusPopup(report) {
 
     const mainElement = document.querySelector('main');
     mainElement.appendChild(popup);
+
+    const closeBtn = popup.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
 
     popup.querySelector('.submit-status').addEventListener('click', () => {
         popup.remove();
@@ -210,3 +216,9 @@ function filterReportsByBounds() {
 // init the map and reports
 map.on('moveend', filterReportsByBounds); // trigger when map view changes
 filterReportsByBounds(); // initial filter call
+
+document.getElementById('clear-reports').addEventListener('click', function() {
+    confirm('Are you sure you want to delete all reports')
+    localStorage.removeItem('emergencyReports');
+    alert('Reports cleared!');
+});

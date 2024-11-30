@@ -28,7 +28,7 @@
             <br>
             <input type="text" id="first-name">
             <input type="text" id="last-name">
-            <input type="text" id="phone-number" placeholder="###-###-####">
+            <input type="tel" id="phone-number" placeholder="###-###-####">
 
             <h2>Emergency Details</h2>
             <label for="nature-emergency" class="input-label2">Nature of the Emergency</label>
@@ -45,11 +45,11 @@
             <br>
             <label for="comments">Comments</label>
             <br>
-            <textarea id="comments" placeholder='“Suspect is wearing cargo shorts with green t-shirt”'>
-            </textarea>
+            <textarea id="comments"></textarea>
             <br>
             <input type="submit" id="submit" value="Submit Report">
         </form>
+        <button id="go-back" onclick="location.href='map/map.html'">back to home page</button>
     </main>
     <p id="test"></p>
     <script src="reportForm.js"></script>
