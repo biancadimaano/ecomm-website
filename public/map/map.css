@@ -420,7 +420,7 @@ main .reports{
 
 @media (width > 89.375rem){
     .grid-container{
-        grid-template-columns: 30% 70%; 
+        grid-template-columns: 35% 65%; 
     }
 
     .reports .grid{
@@ -437,7 +437,7 @@ main .reports{
 
 }
 
-@media (width > 120.375rem){
+@media (width > 103.4375rem){
     main .left{
         border-right: 0.15rem solid #CFDBE4;
     }
