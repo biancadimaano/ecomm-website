@@ -62,7 +62,7 @@ const popupContainer = document.getElementById('popup-container');
 
 function showPopup(report) {
     popupContainer.innerHTML = `
-        <button class="close-btn">X</button>
+        <button class="close-btn">✖</button>
         <h3>${report.natureEmergency}</h3>
         <p class="location"><strong></strong> ${report.location}</p>
 <p class="datetime"><strong></strong> ${new Date(report.timeDate).toLocaleDateString()}<br>${new Date(report.timeDate).toLocaleTimeString()}</p>
