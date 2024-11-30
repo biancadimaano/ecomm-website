@@ -349,3 +349,14 @@ main .reports{
     padding-right: 10px; 
     margin-top: 20px; 
 }
+
+
+.status-popup{
+	position:absolute;
+	top:60%;
+	left:60%;
+	background-color:white;
+	border-radius:20px;
+	padding:30px;
+	z-index:1000;
+}

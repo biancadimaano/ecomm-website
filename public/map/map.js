@@ -94,13 +94,6 @@ function showStatusPopup(report) {
     // make a new popup
     const popup = document.createElement('div');
     popup.classList.add('status-popup');
-    popup.style.position = 'absolute';
-    popup.style.top = '60%';
-    popup.style.left = '60%';
-    popup.style.backgroundColor = 'white';
-    popup.style.borderRadius = '20px';
-    popup.style.padding = '30px';
-    popup.style.zIndex = 1000;
 
     popup.innerHTML = `
         <h3>Change Report Status</h3>
