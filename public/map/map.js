@@ -64,14 +64,12 @@ function showPopup(report) {
     popupContainer.innerHTML = `
         <button class="close-btn">X</button>
         <h3>${report.natureEmergency}</h3>
-        <p><strong>Location:</strong> ${report.location}</p>
-        <p><strong>Time:</strong> ${new Date(report.timeDate).toLocaleString()}</p>
+        <p class="location"><strong></strong> ${report.location}</p>
+<p class="datetime"><strong></strong> ${new Date(report.timeDate).toLocaleDateString()}<br>${new Date(report.timeDate).toLocaleTimeString()}</p>
         <button class="status-btn">Status: ${report.status} </button>
-        <p><strong>Comments:</strong> ${report.comments}</p>
-        <p><strong>Witness:</strong> ${report.firstName} ${report.lastName}</p>
-        <p><strong>Phone:</strong> ${report.phoneNumber}</p>
-        ${report.image ? `<img src="${report.image}" alt="Emergency Image" style="max-width: 100%; max-height: 200px;">` : '<p>No image provided.</p>'}
-
+        ${report.image ? `<img src="${report.image}" alt="Emergency Image">` : '<p>No image provided.</p>'}
+        <p><strong>Reported by</strong><br> ${report.firstName} ${report.lastName} ${report.phoneNumber}
+        <p><strong>Comments</strong><br> ${report.comments}</p>
     `;
     popupContainer.style.display = 'block';
 
