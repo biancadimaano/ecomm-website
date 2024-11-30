@@ -193,6 +193,7 @@ header .button.blue:hover,header .button.blue:focus{
 
 main{
     background-color:white;
+    position:relative;
 }
 
 /* Current reports
@@ -350,13 +351,16 @@ main .reports{
     margin-top: 20px; 
 }
 
+/* Change report status popup styling */
 
 .status-popup{
 	position:absolute;
-	top:60%;
-	left:60%;
+	top:calc(50vh - 15rem);
+	left:calc(50vw - 20rem);
 	background-color:white;
 	border-radius:20px;
+    width:40rem;
+    height:30rem;
 	padding:30px;
 	z-index:1000;
 }
