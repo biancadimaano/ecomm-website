@@ -107,7 +107,7 @@ function showStatusPopup(report) {
         <button class="update-status" data-status="OPEN">OPEN</button>
         <button class="update-status" data-status="RESOLVED">RESOLVED</button>
         
-        <h4>Enter authorization code to change report status</h4>
+        <h4>Enter authorization code to change report status:</h4>
         <input type="text" placeholder="Enter password..." size="50">
 
         <br><br>
