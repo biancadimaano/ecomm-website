@@ -141,7 +141,7 @@ header section{
 
 header h1{
     font-family:'Lato', sans-serif;
-    font-weight:900; /* 900 = black */
+    font-weight:700; /* 700 = bold */
     text-align:center;
     font-size:2.5rem;
     margin-bottom:2.5rem;
@@ -170,7 +170,7 @@ header .button{
     border-radius:0.5rem;
     padding:0.5rem 1.25rem;
     font-family:'Lato',sans-serif;
-    font-weight:700;
+    font-weight:700; /* 700 = bold */
     padding: 0.75rem 0 0.75rem 0;
     margin:0 1rem 0rem 1rem;
     font-size:1.5rem;
@@ -200,12 +200,16 @@ main{
     ==================== */
     
 main section h2{
+    font-family:'Lato', sans-serif;
+    font-weight:700; /* 700 = bold */
     font-size:2.5rem;
     padding: 2rem 2.25rem;
     margin-top:0;
 }
 
 main section .results{
+    font-family:'Lato', sans-serif;
+    font-weight:700; /* 700 = bold */
     color:#4D4D4D;
     font-size:1.25rem;
     font-weight:600;
@@ -254,6 +258,8 @@ main .reports{
 }
 
 .reports div h3{
+    font-family:'Lato', sans-serif;
+    font-weight:700;
     font-size:1.4rem;
     order:0;
 }
@@ -280,7 +286,8 @@ main .reports{
     order:4;
     font-style:normal;
     font-size:1.4rem;
-    font-weight:600;
+    font-family:'Lato', sans-serif;
+    font-weight:700; /* 700 = bold */
 }
 
 .reports div h3, .time, .date, .location, .reports em{
@@ -338,6 +345,9 @@ main .reports{
 }
 
 #popup-container h3{
+    font-family:'Lato', sans-serif;
+    font-weight:700; /* 700 = bold */
+    line-height:2.5rem;
     font-size:2rem;
     margin:0;
 }
