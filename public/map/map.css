@@ -321,18 +321,25 @@ main .reports{
     cursor: pointer;
 }
 
+/* Report popup */
+
 #popup-container {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000; 
+    z-index: 2000; 
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 15px;
+    margin:0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    width:20rem;
+    height:calc(100% - 1rem);
     display: none; 
+}
+
+#popup-container h3{
+    font-size:2rem;
+    margin:0;
 }
 
 #popup-container .close-btn {
@@ -355,8 +362,8 @@ main .reports{
 
 .status-popup{
 	position:absolute;
-	top:calc(50vh - 15rem);
-	left:calc(50vw - 20rem);
+	top:calc(50% - 15rem);
+	left:calc(50% - 20rem);
 	background-color:white;
 	border-radius:20px;
     width:40rem;
