@@ -87,6 +87,30 @@ function showPopup(report) {
     });
 }
 
+function deleteReport(report) {
+    if(!confirm("Are you sure you want to delete this report?")) {
+        return;
+    }
+
+    reports = reports.filter(r => r!== report);
+
+    localStorage.setItem('emergencyReports', JSON.stringify(reports));
+
+    const markerEntry = markers.find(({ report: r }) => r === report);
+    if(markerEntry) {
+        markerEntry.marker.remoe();
+        markers = markers.filter(m => m !== markerEntry);
+    }
+
+    generateReportList(reports);
+    displayReports(reports);
+
+    const popup = document.querySelector('.status-popup');
+    if (popup) popup.remove();
+
+    alert("Report deleted successfully.");
+}
+
 // fcn to change the status
 function showStatusPopup(report) {
     // make a new popup
@@ -107,6 +131,7 @@ function showStatusPopup(report) {
 
         <button class="update-status" data-status="OPEN">OPEN</button>
         <button class="update-status" data-status="RESOLVED">RESOLVED</button>
+        <button class="update-status" id="delete-button">DELETE</button>
         
         <h4>Enter authorization code to change report status:</h4>
         <input type="text" placeholder="Enter password..." size="50">
@@ -127,6 +152,8 @@ function showStatusPopup(report) {
     popup.querySelector('.submit-status').addEventListener('click', () => {
         popup.remove();
     });
+
+    popup.querySelector('#delete-button').addEventListener('click', () => deleteReport(report));
 
     // update status
     popup.querySelectorAll('.update-status').forEach(btn => {
