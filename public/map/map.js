@@ -216,9 +216,3 @@ function filterReportsByBounds() {
 // init the map and reports
 map.on('moveend', filterReportsByBounds); // trigger when map view changes
 filterReportsByBounds(); // initial filter call
-
-document.getElementById('clear-reports').addEventListener('click', function() {
-    confirm('Are you sure you want to delete all reports')
-    localStorage.removeItem('emergencyReports');
-    alert('Reports cleared!');
-});
