@@ -4,6 +4,7 @@
   "description": "CMPT272 Project: Metro Vancouver Emergency Call Reporting System",
   "main": "password.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
