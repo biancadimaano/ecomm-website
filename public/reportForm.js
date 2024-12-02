@@ -1,3 +1,39 @@
+async function geocodeLocation(location) {
+    const geocodeURL = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
+
+    try {
+        const response = await fetch(geocodeURL);
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+            const coords = {
+                latitude: parseFloat(data[0].lat),
+                longitude: parseFloat(data[0].lon),
+            };
+            return coords;
+        } else {
+            throw new Error('Location not found');
+        }
+    } catch (error) {
+        console.error('Geocoding error:', error);
+        throw error;
+    }
+}
+
+document.getElementById('location').addEventListener('blur', async function() {
+    const locationInput = this.value.trim();
+    if (locationInput) {
+        try {
+            const coords = await geocodeLocation(locationInput);
+            const coordinates = `${coords.latitude}, ${coords.longitude}`;
+            document.getElementById('coordinates').value = coordinates;
+        } catch (error) {
+            document.getElementById('coordinates').value = '';
+            alert('Invalid location entered.');
+        } 
+    }
+});
+
 document.getElementById("report-form").addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -9,7 +45,6 @@ document.getElementById("report-form").addEventListener('submit', async function
     const phoneNumber = document.getElementById('phone-number').value.trim();
     const natureEmergency = document.getElementById('nature-emergency').value.trim();
     const location = document.getElementById('location').value.trim();
-    const coordinates = document.getElementById('coordinates').value.trim();
     const fileInput = document.getElementById('image-file');
     const imageUrl = document.getElementById('image-url').value.trim();
     const comments = document.getElementById('comments').value.trim();
@@ -41,12 +76,6 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorMessage.textContent = 'Location is required.';
         errorDiv.appendChild(errorMessage);
     }
-    if (coordinates && !/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|(\d{1,2}))(\.\d+)?)$/.test(coordinates)) {
-        isValid = false;
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = 'Coordinates must be in a valid latitude/longitude format.';
-        errorDiv.appendChild(errorMessage);
-    }
 
     if (!/^https?:\/\/[^\s$.?#].[^\s]*$/.test(imageUrl) && imageUrl) {
         isValid = false;
@@ -66,6 +95,18 @@ document.getElementById("report-form").addEventListener('submit', async function
         isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'You must either upload an image or provide an image URL.';
+        errorDiv.appendChild(errorMessage);
+    }
+
+    let coordinates = '';
+    try {
+        const coords = await geocodeLocation(location);
+        coordinates = `${coords.latitude}, ${coords.longitude}`;
+        document.getElementById('coordinates').value = coordinates;
+    } catch (error) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
         errorDiv.appendChild(errorMessage);
     }
 
@@ -91,6 +132,15 @@ document.getElementById("report-form").addEventListener('submit', async function
         }
     }
 
+    // Passcode
+    const randString = randomString(15);
+    let passcode = '';
+    try {
+        passcode = await createHashPasscode(randString);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
     const data = {
         firstName,
         lastName,
@@ -102,12 +152,13 @@ document.getElementById("report-form").addEventListener('submit', async function
         comments,
         timeDate: new Date().toISOString(),
         status: 'OPEN',
+        passcode: passcode
     };
 
     const reports = JSON.parse(localStorage.getItem('emergencyReports')) || [];
     reports.push(data);
     localStorage.setItem('emergencyReports', JSON.stringify(reports));
 
-    alert('Form submitted successfully');
+    alert('Form submitted successfully. Your passcode is: ' + passcode);
     fileInput.value = ''; 
 });

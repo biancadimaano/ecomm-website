@@ -4,70 +4,47 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>E-Comm Emergency Reports</title>
-    
         <link rel="stylesheet" href="normalize.css">
         <link rel="stylesheet" href="map.css">
-    
-        <!-- Leaflet CSS and JS -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-        <!-- Font imports from Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+        <script src="../password/password.js"></script>
     </head>
-    
 <body>
+    <nav id="nav-bar">
+        <a href="">&nbsp;</a>
+        <a href="./map.html"><h2 style="font-size: 1.5em; font-family: 'Lato', sans-serif;" id="title">E-Comm</h2></a>
+    </nav>  
     <header>
-        <!-- Header image -->
         <img src="https://images.unsplash.com/photo-1693251368019-aeee9c88da92?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="A view of a city with mountains in the background" id="header-city-img" width="2574" height="1930"> 
-        <!-- Navigation -->
-        <nav id="nav-bar">
-            <a href="">&nbsp;</a>
-        </nav>  
-        <!-- Header content -->
         <section>
-            <!-- Title -->
             <h1>E-Comm Emergency Reports</h1>
             <p>A new web-based system for Metro Vancouver that allows you to report, monitor, and respond to emergency reports and 9-1-1 calls quickly and easily.</p>
-
-            <!-- Buttons -->
             <nav class="grid button-header">
                 <a href="../reportForm.html" class="button white">Report an Emergency</a>
             </nav>
         </section>
     </header>                    
-
     <main class="grid-container">
-        <!-- Current Reports section (Left) -->
         <section class="left">
-            <!-- Section title -->
             <h2>Current Reports</h2>
-            <!-- Results text -->
             <p class="results">Results</p>
-            <!-- Emergency report cards -->
             <section class="reports">
                 <div class="grid">
                 </div>
             </section>
         </section>
-    
-        <!-- Map section (Right) -->
         <section class="right">
-
-            <!-- Map container -->
             <div id="map-container">
-                <!-- Map will render here -->
                 <div id="popup-container">
                     <div class="popup-content"></div>
                 </div>
             </div>
         </section>
     </main>
-    
     <script src="map.js"></script>
-    
-
 </body>
 </html>

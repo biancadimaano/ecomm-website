@@ -5,39 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Comm</title>
     <link rel="stylesheet" href="reportForm.css">
+    <script src="./password/password.js"></script>
+    <script src="reportForm.js"></script>
 </head>
 <body>
     <nav>
-        <h4 id="title">E-Comm</h4>
+        <a href="./map/map.html"><h1 id="title" style="font-family: 'Lato', sans-serif; margin-left: 0;">E-Comm</h1></a>
         <!-- Navigation Bar -->
          <ul>
          </ul>
     </nav>
     <header>
-        <h3>E-Comm Emergency Reports</h3>
-        <h1>Emergency Report Form</h1>
-        <h4>Thank you for your emergency report. Please fill out the form below.</h4>
+        <h3><strong>E-Comm Emergency Reports</strong></h3>
+        <h1><strong>Emergency Report Form</strong></h1>
+        <h4><strong>Thank you for your emergency report. Please fill out the form below.</strong></h4>
     </header>
     <main>
         <form id="report-form">
             <div id="errors"></div>
             <h2>Witness Information</h2>
-            <label for="first-name" class="input-label1">First Name</label>
-            <label for="last-name" class="input-label1">Last Name</label>
-            <label for="phone-number" class="input-label1">Phone Number</label>
-            <br>
-            <input type="text" id="first-name">
-            <input type="text" id="last-name">
-            <input type="tel" id="phone-number" placeholder="###-###-####">
-
+            <table>
+                <thead style="text-align: left;">
+                    <tr>
+                        <th><label for="first-name" class="input-label1">First Name</label></th>
+                        <th><label for="last-name" class="input-label1">Last Name</label></th>
+                        <th><label for="phone-number" class="input-label1">Phone Number</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="first-name"></td>
+                        <td><input type="text" id="last-name"></td>
+                        <td><input type="text" id="phone-number" placeholder="###-###-####"></td>
+                    </tr>
+                </tbody>
+            </table>
             <h2>Emergency Details</h2>
-            <label for="nature-emergency" class="input-label2">Nature of the Emergency</label>
-            <label for="location" class="input-label2">Location</label>
-            <br>
-            <input type="text" id="nature-emergency">
-            <input type="text" id="location">
-            <input type="text" id="coordinates" placeholder="Input Coordinates">
-            <br>
+            <table>
+                <thead style="text-align: left;">
+                    <tr>
+                        <th><label for="nature-emergency" class="input-label2">Nature of the Emergency</label></th>
+                        <th><label for="location" class="input-label2">Location</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="nature-emergency"></td>
+                        <td><input type="text" id="location"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="hidden" id="coordinates" name="coordinates">
             <label for="image-file">Image of the Emergency</label>
             <input type="file" id="image-file">
             OR
@@ -49,6 +67,7 @@
             <br>
             <input type="submit" id="submit" value="Submit Report">
         </form>
+        <br>
         <button id="go-back" onclick="location.href='map/map.html'">back to home page</button>
     </main>
     <p id="test"></p>
