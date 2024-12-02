@@ -1,4 +1,4 @@
-// init the map
+// initialize the map
 const map = L.map('map-container').setView([49.2827, -123.1207], 10); // centered around metro van
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -23,21 +23,12 @@ const highlightedIcon = L.icon({
     className: 'pink-marker', 
 });
 
-// style for pink markers
-const style = document.createElement('style');
-style.textContent = `
-    .pink-marker {
-        filter: hue-rotate(40deg) brightness(1.5) saturate(2); 
-    }
-`;
-document.head.appendChild(style);
-
 // get reports from localStorage
 let reports = JSON.parse(localStorage.getItem('emergencyReports')) || [];
-let markers = []; // store markers with reports
+let markers = []; 
 
 function displayReports(filteredReports = reports) {
-    markers.forEach(({ marker }) => marker.remove()); // clear existing markers
+    markers.forEach(({ marker }) => marker.remove()); 
     markers = [];
 
     filteredReports.forEach((report) => {
@@ -64,41 +55,38 @@ function showPopup(report) {
     popupContainer.innerHTML = `
         <button class="close-btn">✖</button>
         <h3>${report.natureEmergency}</h3>
-        <p class="location"><strong></strong> ${report.location}</p>
-<p class="datetime"><strong></strong> ${new Date(report.timeDate).toLocaleDateString()}<br>${new Date(report.timeDate).toLocaleTimeString()}</p>
-        <button class="status-btn">Status: ${report.status} </button>
-        ${report.image ? `<img src="${report.image}" alt="Emergency Image">` : '<p>No image provided.</p>'}
-        <p><strong>Reported by</strong><br> ${report.firstName} ${report.lastName} ${report.phoneNumber}
-        <p><strong>Comments</strong><br> ${report.comments}</p>
+        <p class="location"><strong>Location:</strong> ${report.location}</p>
+        <p class="datetime"><strong>Reported At:</strong> ${new Date(report.timeDate).toLocaleDateString()}<br>${new Date(report.timeDate).toLocaleTimeString()}</p>
+        <button class="status-btn">Status: ${report.status}</button>
+        ${report.image ? `<img src="${report.image}" alt="Emergency Image" style="max-width: 100%;">` : '<p>No image provided.</p>'}
+        <p><strong>Reported by:</strong><br>${report.firstName} ${report.lastName} (${report.phoneNumber})</p>
+        <p><strong>Comments:</strong><br>${report.comments}</p>
     `;
     popupContainer.style.display = 'block';
 
-    // close popup
+    // Close popup functionality
     const closeBtn = popupContainer.querySelector('.close-btn');
     closeBtn.addEventListener('click', () => {
         popupContainer.style.display = 'none';
         resetMarkerHighlights();
     });
 
-    // show status popup
+    // Show status popup when the status button is clicked
     const statusBtn = popupContainer.querySelector('.status-btn');
     statusBtn.addEventListener('click', () => {
         showStatusPopup(report);
+        popupContainer.style.display = 'none'; // Close the report popup
     });
 }
 
 function deleteReport(report) {
-    if(!confirm("Are you sure you want to delete this report?")) {
-        return;
-    }
-
     reports = reports.filter(r => r!== report);
 
     localStorage.setItem('emergencyReports', JSON.stringify(reports));
 
     const markerEntry = markers.find(({ report: r }) => r === report);
     if(markerEntry) {
-        markerEntry.marker.remoe();
+        markerEntry.marker.remove();
         markers = markers.filter(m => m !== markerEntry);
     }
 
@@ -111,75 +99,110 @@ function deleteReport(report) {
     alert("Report deleted successfully.");
 }
 
-// fcn to change the status
 function showStatusPopup(report) {
-    // make a new popup
-    const popup = document.createElement('div');
-    popup.classList.add('status-popup');
+    popupContainer.innerHTML = ''; 
+    popupContainer.style.display = 'none';
 
-    popup.innerHTML = `
+    // Create a new status popup
+    const statusPopup = document.createElement('div');
+    statusPopup.classList.add('status-popup');
+
+    statusPopup.innerHTML = `
         <button class="close-btn">✖</button>
         <h3>Change Report Status</h3>
 
-        <h4>Report</h4>
+        <h4>Report Details</h4>
         <p>
-            ${report.natureEmergency}, ${report.location}<br>
-            ${new Date(report.timeDate).toLocaleString()}
+            <strong>Nature:</strong> ${report.natureEmergency}<br>
+            <strong>Location:</strong> ${report.location}<br>
+            <strong>Reported At:</strong> ${new Date(report.timeDate).toLocaleString()}
         </p>
 
-        <h4>Change status to</h4>
+        <h4>Change status to:</h4>
 
         <button class="update-status" data-status="OPEN">OPEN</button>
         <button class="update-status" data-status="RESOLVED">RESOLVED</button>
-        <button class="update-status" id="delete-button">DELETE</button>
+        <button class="update-status" data-status="DELETE">DELETE</button>
         
-        <h4>Enter authorization code to change report status:</h4>
-        <input type="text" placeholder="Enter password..." size="50">
+        <h4>Passcode</h4>
+        <p>${report.passcode}</p>
 
-        <br><br>
+        <label for="entered-passcode">Enter Passcode:</label>
+        <input type="text" id="entered-passcode" class="entered-passcode" placeholder="Enter passcode here">
 
         <button class="submit-status">Submit</button>
     `;
 
     const mainElement = document.querySelector('main');
-    mainElement.appendChild(popup);
+    mainElement.appendChild(statusPopup);
 
-    const closeBtn = popup.querySelector('.close-btn');
+    statusPopup.style.display = 'block';
+
+    // Close status popup functionality
+    const closeBtn = statusPopup.querySelector('.close-btn');
     closeBtn.addEventListener('click', () => {
-        popup.style.display = 'none';
+        statusPopup.remove();
     });
 
-    popup.querySelector('.submit-status').addEventListener('click', () => {
-        popup.remove();
-    });
+    // Handle status button selection
+    const statusButtons = statusPopup.querySelectorAll('.update-status');
+    let selectedStatus = null;
 
-    popup.querySelector('#delete-button').addEventListener('click', () => deleteReport(report));
-
-    // update status
-    popup.querySelectorAll('.update-status').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const newStatus = e.target.dataset.status;
-            report.status = newStatus;
-            popup.remove();
-            showPopup(report); 
-            localStorage.setItem('emergencyReports', JSON.stringify(reports));
+    statusButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            statusButtons.forEach(button => button.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedStatus = btn.dataset.status;
         });
+    });
+
+    // Handle Submit button click
+    const submitBtn = statusPopup.querySelector('.submit-status');
+    submitBtn.addEventListener('click', () => {
+        const enteredPasscode = statusPopup.querySelector('#entered-passcode').value.trim();
+
+        if (!selectedStatus) {
+            alert('Please select a status.');
+            return;
+        }
+
+        if (enteredPasscode !== report.passcode) {
+            alert('Incorrect passcode. Please try again.');
+            return;
+        }
+
+        if (selectedStatus === 'DELETE') {
+            if (confirm('Are you sure you want to delete this report?')) {
+                deleteReport(report);
+                statusPopup.remove();
+                return;
+            } else {
+                return;
+            }
+        } else {
+            // Update report status
+            report.status = selectedStatus;
+            localStorage.setItem('emergencyReports', JSON.stringify(reports));
+
+            generateReportList(reports);
+            displayReports(reports);
+
+            statusPopup.remove();
+            showPopup(report); 
+            return;
+        }
     });
 }
 
-
-// highlight selected marker
 function highlightMarker(selectedMarker) {
     markers.forEach(({ marker }) => marker.setIcon(defaultIcon));
     selectedMarker.setIcon(highlightedIcon);
 }
 
-// reset all markers
 function resetMarkerHighlights() {
     markers.forEach(({ marker }) => marker.setIcon(defaultIcon));
 }
 
-// highlight corresponding report in the list
 function highlightReport(report) {
     document.querySelectorAll('.reports .grid').forEach((el) => {
         el.classList.remove('highlight');
@@ -240,6 +263,6 @@ function filterReportsByBounds() {
     displayReports(filteredReports);
 }
 
-// init the map and reports
-map.on('moveend', filterReportsByBounds); // trigger when map view changes
+// initialize the map and reports
+map.on('moveend', filterReportsByBounds); 
 filterReportsByBounds(); // initial filter call

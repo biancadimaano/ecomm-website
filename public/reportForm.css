@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family:'Fira Sans', sans-serif;
 }
 
 #title {
@@ -9,12 +10,12 @@
     margin: 0;
     margin-top: 20px;
     display: flex;
-    
 }
 
 nav {
     display: flex;
     justify-content: space-between;
+    font-family: 'Lato', sans-serif;
     padding: 0 20px;
     background-color: #163F56;
 }
@@ -23,15 +24,11 @@ nav ul {
     font-size: small;
     font-family: 'Lato', sans-serif;
     display: flex;
-    justify-content: space-around;
-    padding: 20px;
     text-align: right;
-    margin: 0px;
 }
 
 nav ul li {
     list-style-type: none;
-    margin: 0 10px;
 }
 
 nav ul li a {
@@ -105,7 +102,7 @@ main h2 {
 #location {
     height: 20px;
     width: 250px;
-    margin-bottom: 50px
+    margin-right: 20px;
 }
 #coordinates {
     height: 20px;
@@ -138,4 +135,8 @@ main h2 {
 #errors {
     color: #ee6d6d;
     line-height: 4vh;
+}
+
+a {
+    text-decoration: none;
 }
