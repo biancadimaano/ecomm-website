@@ -11,3 +11,6 @@ To run this application you need to:
 2) Install dependencies with the command npm install
 3) Run the server with the command `node src/server.js` or `npm run start`
 4) On Google Chrome, enter this url: http://localhost:3000/map/map.html
+
+
+[Repository Link](https://github.com/biancadimaano/ecomm-website)
