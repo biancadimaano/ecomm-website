@@ -21,15 +21,3 @@ function randomString(length) {
     }
     return res;
 }
-
-document.getElementById('gen-pcode-btn').addEventListener('click', async function() {
-    const randString = randomString(15);
-
-    try {
-        const hashRes = await createHashPasscode(randString);
-        // Show the passcode on the HTML page
-        document.getElementById('passcode-placeholder').textContent = hashRes;
-    } catch (error) {
-        console.error('Error:', error);
-    }
-});
