@@ -14,3 +14,10 @@ To run this application you need to:
 
 
 [Repository Link](https://github.com/biancadimaano/ecomm-website)
+
+##### Group Contributions:
+- Mara Liwayway David 20%
+- Bianco Dimaano 20%
+- Jennifer Huang 20%
+- Alex Ramirez 20%
+- Jaycie Say 20%
