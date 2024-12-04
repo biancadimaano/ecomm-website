@@ -70,7 +70,7 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorMessage.textContent = 'Nature of the emergency is required.';
         errorDiv.appendChild(errorMessage);
     }
-    if(!location) {
+    if(!location && !coordinates) {
         isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'Location is required.';
@@ -90,17 +90,19 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorDiv.appendChild(errorMessage);
     }
 
-    let coordinates = '';
-    try {
-        const coords = await geocodeLocation(location);
-        coordinates = `${coords.latitude}, ${coords.longitude}`;
-        document.getElementById('coordinates').value = coordinates;
-    } catch (error) {
-        isValid = false;
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
-        errorDiv.appendChild(errorMessage);
-    }
+    // COMMENTED OUT 
+    // if (coordinates){
+    //     try {
+    //         const coords = await geocodeLocation(location);
+    //         coordinates = `${coords.latitude}, ${coords.longitude}`;
+    //         document.getElementById('coordinates').value = coordinates;
+    //     } catch (error) {
+    //         isValid = false;
+    //         const errorMessage = document.createElement('p');
+    //         errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
+    //         errorDiv.appendChild(errorMessage);
+    //     }
+    // }
 
     if (!isValid) {
         alert('Form unable to submit');
