@@ -10,9 +10,9 @@
 </head>
 <body>
     <nav>
-       <h1 id="title" style="font-family: 'Lato', sans-serif; margin-left: 0;">
+       <h2 id="title" style="font-family: 'Lato', sans-serif; margin-left: 0;">
             E-Comm
-        </h1>
+        </h2>
         
         <!-- Navigation Bar -->
          <ul>
@@ -49,21 +49,29 @@
                     <tr>
                         <th><label for="nature-emergency" class="input-label2">Nature of the Emergency</label></th>
                         <th><label for="location" class="input-label2">Location</label></th>
+                        <th></th>
+                        <th><label for="coordinates" class="input-label2">Coordinates (OPTIONAL)</label></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><input type="text" id="nature-emergency"></td>
-                        <td><input type="text" id="location"></td>
+                        <td><input type="text" id="location" placeholder="e.g. 8888 University Dr W, Burnaby, BC"></td> 
+                        <td style="text-align: center; vertical-align: middle;" id="or-text">OR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <input type="text" id="coordinates" placeholder="e.g. 49.279477026730326, -122.920281426959" size="40">
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>Please enter a valid location</td>
+                        <td>Please enter a valid location. <br>Location entered through this field will be transformed into valid coordinates.</td>
+                        <td> </td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" id="coordinates" name="coordinates">
-            <label for="image-file">Image of the Emergency</label>
+            <!-- <input type="hidden" id="coordinates" name="coordinates"> -->
+            <strong><label for="image-file">Image of the Emergency (OPTIONAL)</label></strong>
             <input type="file" id="image-file">
             OR
             <input type="text" id="image-url" placeholder="Paste Image URL">
