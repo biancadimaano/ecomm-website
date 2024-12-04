@@ -23,6 +23,15 @@ const highlightedIcon = L.icon({
     className: 'pink-marker', 
 });
 
+// style for pink markers
+const style = document.createElement('style');
+style.textContent = `
+    .pink-marker {
+        filter: hue-rotate(40deg) brightness(1.5) saturate(2); 
+    }
+`;
+document.head.appendChild(style);
+
 // get reports from localStorage
 let reports = JSON.parse(localStorage.getItem('emergencyReports')) || [];
 let markers = []; 
