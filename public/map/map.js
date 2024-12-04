@@ -265,4 +265,4 @@ function filterReportsByBounds() {
 
 // initialize the map and reports
 map.on('moveend', filterReportsByBounds); 
-filterReportsByBounds(); // initial filter call
+filterReportsByBounds(); 
