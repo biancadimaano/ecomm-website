@@ -77,12 +77,6 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorDiv.appendChild(errorMessage);
     }
 
-    if (!/^https?:\/\/[^\s$.?#].[^\s]*$/.test(imageUrl) && imageUrl) {
-        isValid = false;
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = 'Image URL must be a valid URL.';
-        errorDiv.appendChild(errorMessage);
-    }
     if (comments.length > 500) {
         isValid = false;
         const errorMessage = document.createElement('p');
@@ -90,7 +84,6 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorDiv.appendChild(errorMessage);
     }
 
-    // Ensure either image URL or image file is provided
     if (!imageUrl && fileInput.files.length === 0) {
         isValid = false;
         const errorMessage = document.createElement('p');
