@@ -64,6 +64,12 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorMessage.textContent = 'Last name is required and must contain only letters.';
         errorDiv.appendChild(errorMessage);
     }
+    if(!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Phone number is required and must be 10 digits.';
+        errorDiv.appendChild(errorMessage);
+    }
     if(!natureEmergency) {
         isValid = false;
         const errorMessage = document.createElement('p');
@@ -90,19 +96,19 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorDiv.appendChild(errorMessage);
     }
 
-    // COMMENTED OUT 
-    // if (coordinates){
-    //     try {
-    //         const coords = await geocodeLocation(location);
-    //         coordinates = `${coords.latitude}, ${coords.longitude}`;
-    //         document.getElementById('coordinates').value = coordinates;
-    //     } catch (error) {
-    //         isValid = false;
-    //         const errorMessage = document.createElement('p');
-    //         errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
-    //         errorDiv.appendChild(errorMessage);
-    //     }
-    // }
+
+    if (coordinates){
+        try {
+            const coords = await geocodeLocation(location);
+            coordinates = `${coords.latitude}, ${coords.longitude}`;
+            document.getElementById('coordinates').value = coordinates;
+        } catch (error) {
+            isValid = false;
+            const errorMessage = document.createElement('p');
+            errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
+            errorDiv.appendChild(errorMessage);
+        }
+    }
 
     if (!isValid) {
         alert('Form unable to submit');
