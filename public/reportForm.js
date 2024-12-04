@@ -64,13 +64,19 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorMessage.textContent = 'Last name is required and must contain only letters.';
         errorDiv.appendChild(errorMessage);
     }
+    if(!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
+        isValid = false;
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Phone number is required and must be 10 digits.';
+        errorDiv.appendChild(errorMessage);
+    }
     if(!natureEmergency) {
         isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'Nature of the emergency is required.';
         errorDiv.appendChild(errorMessage);
     }
-    if(!location) {
+    if(!location && !coordinates) {
         isValid = false;
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'Location is required.';
@@ -90,24 +96,18 @@ document.getElementById("report-form").addEventListener('submit', async function
         errorDiv.appendChild(errorMessage);
     }
 
-    // Ensure either image URL or image file is provided
-    if (!imageUrl && fileInput.files.length === 0) {
-        isValid = false;
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = 'You must either upload an image or provide an image URL.';
-        errorDiv.appendChild(errorMessage);
-    }
 
-    let coordinates = '';
-    try {
-        const coords = await geocodeLocation(location);
-        coordinates = `${coords.latitude}, ${coords.longitude}`;
-        document.getElementById('coordinates').value = coordinates;
-    } catch (error) {
-        isValid = false;
-        const errorMessage = document.createElement('p');
-        errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
-        errorDiv.appendChild(errorMessage);
+    if (coordinates){
+        try {
+            const coords = await geocodeLocation(location);
+            coordinates = `${coords.latitude}, ${coords.longitude}`;
+            document.getElementById('coordinates').value = coordinates;
+        } catch (error) {
+            isValid = false;
+            const errorMessage = document.createElement('p');
+            errorMessage.textContent = 'Invalid location entered. Please enter a valid location.';
+            errorDiv.appendChild(errorMessage);
+        }
     }
 
     if (!isValid) {
@@ -115,7 +115,7 @@ document.getElementById("report-form").addEventListener('submit', async function
         return;
     }
 
-    let image = imageUrl; 
+    let image = imageUrl || null; // Allow image to be null if no URL or file is provided
     if (!image && fileInput.files.length > 0) {
         try {
             const file = fileInput.files[0];
@@ -148,7 +148,7 @@ document.getElementById("report-form").addEventListener('submit', async function
         natureEmergency,
         location,
         coordinates,
-        image, 
+        image, // Image can be null if not provided
         comments,
         timeDate: new Date().toISOString(),
         status: 'OPEN',
@@ -162,3 +162,4 @@ document.getElementById("report-form").addEventListener('submit', async function
     alert('Form submitted successfully. Your passcode is: ' + passcode);
     fileInput.value = ''; 
 });
+
